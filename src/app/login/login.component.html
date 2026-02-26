@@ -1,0 +1,60 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="brand">
+      <h1>WasteZero</h1>
+      <p>Smart Waste Pickup &amp; Recycling Platform</p>
+    </div>
+    
+    <div class="auth-header">
+      <h2>Welcome Back</h2>
+      <p>Sign in to continue</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <div class="input-container">
+          <input 
+            type="email" 
+            id="email" 
+            formControlName="email" 
+            placeholder="name@example.com"
+            [class.invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+          >
+        </div>
+        <div class="error-msg" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+          <small *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+          <small *ngIf="loginForm.get('email')?.errors?.['email']">Please enter a valid email address</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label-row">
+          <label for="password">Password</label>
+          <a routerLink="/forget-password" class="forgot-link">Forgot password?</a>
+        </div>
+        <div class="input-container">
+          <input 
+            type="password" 
+            id="password" 
+            formControlName="password" 
+            placeholder="••••••••"
+            [class.invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+          >
+        </div>
+        <div class="error-msg" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+          <small *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+        <span *ngIf="!isSubmitting">Sign In</span>
+        <span *ngIf="isSubmitting" class="spinner"></span>
+      </button>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a routerLink="/register">Register here</a></p>
+      </div>
+    </form>
+  </div>
+</div>

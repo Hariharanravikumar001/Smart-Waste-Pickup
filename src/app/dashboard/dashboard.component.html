@@ -1,0 +1,102 @@
+<div class="dashboard-header">
+  <h1>Welcome Back!</h1>
+  <p>Here's an overview of your activity.</p>
+</div>
+
+<div class="stats-grid">
+  <!-- USER STATS -->
+  <ng-container *ngIf="role === 'User'">
+    <div class="stat-card">
+      <div class="stat-icon bg-blue"><i class="icon-trash"></i></div>
+      <div>
+        <div class="stat-title">Total Pickups</div>
+        <div class="stat-value">12</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-orange"><i class="icon-clock"></i></div>
+      <div>
+        <div class="stat-title">Pending Requests</div>
+        <div class="stat-value text-warning">2</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-green"><i class="icon-leaf"></i></div>
+      <div>
+        <div class="stat-title">Waste Recycled</div>
+        <div class="stat-value text-success">45 kg</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- VOLUNTEER STATS -->
+  <ng-container *ngIf="role === 'Volunteer'">
+    <div class="stat-card">
+      <div class="stat-icon bg-green"><i class="icon-check"></i></div>
+      <div>
+        <div class="stat-title">Pickups Completed</div>
+        <div class="stat-value text-success">28</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-blue"><i class="icon-truck"></i></div>
+      <div>
+        <div class="stat-title">Active Tasks</div>
+        <div class="stat-value text-primary">3</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-purple"><i class="icon-map"></i></div>
+      <div>
+        <div class="stat-title">Total Distance</div>
+        <div class="stat-value">120 km</div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- ADMIN STATS -->
+  <ng-container *ngIf="role === 'Admin'">
+    <div class="stat-card">
+      <div class="stat-icon bg-blue"><i class="icon-users"></i></div>
+      <div>
+        <div class="stat-title">Total Users</div>
+        <div class="stat-value">1,245</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-green"><i class="icon-shield"></i></div>
+      <div>
+        <div class="stat-title">Active Volunteers</div>
+        <div class="stat-value text-success">84</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon bg-pink"><i class="icon-globe"></i></div>
+      <div>
+        <div class="stat-title">Total Recycled</div>
+        <div class="stat-value text-primary">12.5 T</div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="quick-actions" *ngIf="role === 'User'">
+  <h2>Quick Actions</h2>
+  <div class="action-buttons">
+    <button class="btn btn-primary" routerLink="/schedule-pickup">Schedule New Pickup</button>
+  </div>
+</div>
+
+<div class="quick-actions" *ngIf="role === 'Volunteer'">
+  <h2>Available Opportunities</h2>
+  <div class="action-buttons">
+    <button class="btn btn-primary" routerLink="/opportunities">Find Pickups Near Me</button>
+  </div>
+</div>
+
+<div class="quick-actions" *ngIf="role === 'Admin'">
+  <h2>System Overview</h2>
+  <div class="action-buttons">
+    <button class="btn btn-primary" routerLink="/admin">Manage Users & Platform</button>
+  </div>
+</div>
