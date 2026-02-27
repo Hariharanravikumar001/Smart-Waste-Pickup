@@ -1,0 +1,14 @@
+[
+  {
+    "_id": "69a157a09aac6e0be10f42ec",
+    "username": "arunkumar123",
+    "email": "arun123@gmail.com",
+    "role": "admin"
+  },
+  {
+    "_id": "69a1582a9aac6e0be10f42f4",
+    "username": "hariharan",
+    "email": "hariharannamakkal2025@gmail.com",
+    "role": "volunteer"
+  }
+]

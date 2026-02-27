@@ -6,6 +6,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  username: {
+    type: String,
+    unique: true
+  },
   name: {
     type: String,
     required: true
@@ -30,6 +34,16 @@ const UserSchema = new mongoose.Schema({
   created_at: {
     type: Date,
     default: Date.now
+  },
+  resetOtp: {
+    type: String
+  },
+  resetPasswordExpires: {
+    type: Date
+  },
+  avatar: {
+    type: String,
+    default: ''
   }
 });
 

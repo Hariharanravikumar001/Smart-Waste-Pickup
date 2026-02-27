@@ -1,0 +1,2 @@
+SRV: ac-fft6zbl-shard-00-00.kasfsbc.mongodb.net,ac-fft6zbl-shard-00-01.kasfsbc.mongodb.net,ac-fft6zbl-shard-00-02.kasfsbc.mongodb.net
+TXT: authSource=admin&replicaSet=atlas-ggz0rh-shard-0

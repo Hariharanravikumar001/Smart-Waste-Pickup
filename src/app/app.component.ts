@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { ThemeService } from './services/theme.service';
 import { filter } from 'rxjs';
 
 @Component({
@@ -11,7 +12,7 @@ export class AppComponent implements OnInit {
   title = 'myapp';
   isAuthPage = false;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private themeService: ThemeService) {}
 
   ngOnInit() {
     this.router.events.pipe(

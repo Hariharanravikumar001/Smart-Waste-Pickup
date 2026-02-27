@@ -3,6 +3,11 @@
   flex-direction: column;
   min-height: 100vh;
   background-color: #f8fafc;
+  transition: background-color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .app-layout {
+  background-color: #151521;
 }
 
 .main-container {
@@ -12,6 +17,12 @@
 
 .main-container.auth-container {
   display: block;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
 }
 
 .sidebar {

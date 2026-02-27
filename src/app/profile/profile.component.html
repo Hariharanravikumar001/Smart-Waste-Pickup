@@ -1,1 +1,135 @@
-<p>profile works!</p>
+<div class="container-fluid py-4">
+  <h2 class="mb-4">My Profile</h2>
+
+  <div *ngIf="isProfileLoading" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <div class="row g-4" *ngIf="!isProfileLoading">
+    
+    <!-- Profile Details Card -->
+    <div class="col-12 col-lg-7">
+      <div class="card shadow-sm border-0 rounded-4 h-100">
+        <div class="card-header bg-transparent border-bottom-0 pt-4 pb-0 px-4">
+          <h5 class="fw-bold mb-0 text-primary">Personal Information</h5>
+        </div>
+        <div class="card-body p-4">
+          
+          <div *ngIf="profileSuccessMsg" class="alert alert-success py-2">{{ profileSuccessMsg }}</div>
+          <div *ngIf="profileErrorMsg" class="alert alert-danger py-2">{{ profileErrorMsg }}</div>
+
+          <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()">
+            
+            <!-- Avatar Upload Section -->
+            <div class="d-flex flex-column align-items-center mb-4 pb-3 border-bottom">
+              <div class="position-relative mb-3">
+                <img [src]="currentAvatarPreview || 'assets/default-avatar.png'" 
+                     alt="Profile Avatar" 
+                     class="rounded-circle shadow-sm object-fit-cover" 
+                     style="width: 120px; height: 120px; border: 3px solid #fff;">
+                
+                <label for="avatarInput" class="position-absolute bottom-0 end-0 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center cursor-pointer shadow-sm pointer-label" style="width: 35px; height: 35px; cursor: pointer;">
+                  <i class="icon-camera" style="font-size: 0.9rem;">&#128247;</i> <!-- Camera Icon Fallback emoji -->
+                </label>
+                <input type="file" id="avatarInput" class="d-none" accept="image/*" (change)="onAvatarSelected($event)">
+              </div>
+              <div class="text-muted small">Max file size: 2MB</div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-semibold">Full Name</label>
+                <input type="text" class="form-control" formControlName="name"
+                  [class.is-invalid]="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+                <div class="invalid-feedback">Name is required</div>
+              </div>
+              <div class="col-md-6 mt-3 mt-md-0">
+                <label class="form-label text-muted small fw-semibold">Username</label>
+                <input type="text" class="form-control" formControlName="username">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-semibold">Email Address</label>
+              <input type="email" class="form-control" formControlName="email"
+                [class.is-invalid]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+              <div class="invalid-feedback">A valid email is required</div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <label class="form-label text-muted small fw-semibold">Role</label>
+                <input type="text" class="form-control bg-body-secondary" formControlName="role">
+              </div>
+              <div class="col-md-6 mt-3 mt-md-0">
+                <label class="form-label text-muted small fw-semibold">Location</label>
+                <input type="text" class="form-control" formControlName="location">
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary px-4" [disabled]="isProfileSubmitting || profileForm.invalid">
+                <span *ngIf="!isProfileSubmitting">Save Changes</span>
+                <span *ngIf="isProfileSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              </button>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Change Password Card -->
+    <div class="col-12 col-lg-5">
+      <div class="card shadow-sm border-0 rounded-4 h-100">
+        <div class="card-header bg-transparent border-bottom-0 pt-4 pb-0 px-4">
+          <h5 class="fw-bold mb-0 text-primary">Change Password</h5>
+        </div>
+        <div class="card-body p-4">
+          
+          <div *ngIf="passwordSuccessMsg" class="alert alert-success py-2">{{ passwordSuccessMsg }}</div>
+          <div *ngIf="passwordErrorMsg" class="alert alert-danger py-2">{{ passwordErrorMsg }}</div>
+
+          <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+            
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-semibold">Old Password</label>
+              <input type="password" class="form-control" formControlName="oldPassword"
+                [class.is-invalid]="passwordForm.get('oldPassword')?.invalid && passwordForm.get('oldPassword')?.touched">
+              <div class="invalid-feedback">Old password is required</div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label text-muted small fw-semibold">New Password</label>
+              <input type="password" class="form-control" formControlName="newPassword"
+                [class.is-invalid]="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="passwordForm.get('newPassword')?.errors?.['required']">New password is required</span>
+                <span *ngIf="passwordForm.get('newPassword')?.errors?.['minlength']">Must be at least 6 characters</span>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label text-muted small fw-semibold">Confirm New Password</label>
+              <input type="password" class="form-control" formControlName="confirmPassword"
+                [class.is-invalid]="(passwordForm.get('confirmPassword')?.invalid || passwordForm.hasError('mismatch')) && passwordForm.get('confirmPassword')?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="passwordForm.get('confirmPassword')?.errors?.['required']">Confirm password is required</span>
+                <span *ngIf="passwordForm.hasError('mismatch') && !passwordForm.get('confirmPassword')?.errors?.['required']">Passwords do not match</span>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary w-100" [disabled]="isPasswordSubmitting || passwordForm.invalid">
+              <span *ngIf="!isPasswordSubmitting">Update Password</span>
+              <span *ngIf="isPasswordSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

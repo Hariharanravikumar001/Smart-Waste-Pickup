@@ -1,13 +1,30 @@
 .sidebar-container {
   width: 260px;
-  height: calc(100vh - 64px); /* assuming 64px navbar */
+  height: 100vh;
   background-color: #ffffff;
   border-right: 1px solid #e2e8f0;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
   position: sticky;
-  top: 64px;
+  top: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .sidebar-container {
+  background-color: #1e1e2d; /* Dark theme background */
+  border-right-color: #2b2b40;
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+    top: 0;
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
 }
 
 .sidebar-header {
@@ -16,6 +33,11 @@
   align-items: center;
   gap: 0.75rem;
   border-bottom: 1px solid #f1f5f9;
+  transition: border-color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .sidebar-header {
+  border-bottom-color: #2b2b40;
 }
 
 .logo {
@@ -35,7 +57,13 @@
   margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
+  font-weight: 700;
   color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .sidebar-header h3 {
+  color: #ffffff;
 }
 
 .nav-links {
@@ -71,9 +99,28 @@
   font-weight: 600;
 }
 
+:host-context([data-bs-theme="dark"]) .nav-item {
+  color: #94a3b8;
+}
+
+:host-context([data-bs-theme="dark"]) .nav-item:hover {
+  background-color: rgba(2, 132, 199, 0.15);
+  color: #38bdf8;
+}
+
+:host-context([data-bs-theme="dark"]) .nav-item.active {
+  background-color: rgba(2, 132, 199, 0.25);
+  color: #38bdf8;
+}
+
 .sidebar-footer {
   padding: 1.5rem 1rem;
   border-top: 1px solid #f1f5f9;
+  transition: border-color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .sidebar-footer {
+  border-top-color: #2b2b40;
 }
 
 .logout {
@@ -82,4 +129,65 @@
 .logout:hover {
   background-color: #fef2f2;
   color: #dc2626;
+}
+
+/* User Info & Avatar */
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #e2e8f0;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 0 0 1px #e2e8f0;
+  flex-shrink: 0;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .avatar, :host-context([data-bs-theme="dark"]) .avatar-img {
+  border-color: #1e1e2d;
+  box-shadow: 0 0 0 1px #2b2b40;
+}
+
+.profile-link-text {
+  color: #0f172a;
+  transition: color 0.3s ease;
+}
+
+:host-context([data-bs-theme="dark"]) .profile-link-text {
+  color: #f8fafc;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem;
+}
+
+.role-badge.user {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.role-badge.volunteer {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.role-badge.admin {
+  background-color: #fee2e2;
+  color: #991b1b;
 }

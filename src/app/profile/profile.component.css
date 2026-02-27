@@ -1,0 +1,14 @@
+/* Soft background to match the rest of the app */
+:host {
+  display: block;
+  min-height: calc(100vh - 4rem);
+}
+
+.card {
+  transition: all 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.1);
+}

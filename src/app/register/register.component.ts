@@ -15,6 +15,7 @@ export class RegisterComponent {
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService) {
     this.registerForm = this.fb.group({
       fullName: ['', Validators.required],
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required],
@@ -35,6 +36,7 @@ export class RegisterComponent {
       
       this.authService.register({
         name: formData.fullName,
+        username: formData.username,
         email: formData.email,
         password: formData.password,
         role: formData.role,
@@ -48,7 +50,8 @@ export class RegisterComponent {
         error: (err) => {
           this.isSubmitting = false;
           console.error('Registration failed', err);
-          alert('Registration failed. Try again.');
+          const errorMessage = err.error?.message || 'Registration failed. Try again.';
+          alert(errorMessage);
         }
       });
     } else {

@@ -34,14 +34,34 @@
         <i class="icon-messages"></i> Messages
       </a>
     </li>
-    <li>
-      <a routerLink="/profile" routerLinkActive="active" class="nav-item">
-        <i class="icon-profile"></i> Profile
-      </a>
-    </li>
   </ul>
 
   <div class="sidebar-footer">
+    
+    <!-- Theme Toggle -->
+    <a href="#" class="nav-item mb-3 d-flex justify-content-between align-items-center" (click)="toggleTheme($event)">
+      <span>
+        <i class="icon-theme me-2" style="font-style: normal;" *ngIf="currentTheme === 'light'">&#9728;</i> <!-- Sun emoji -->
+        <i class="icon-theme me-2" style="font-style: normal;" *ngIf="currentTheme === 'dark'">&#127380;</i> <!-- Moon emoji approximation / styling can be changed -->
+        <span *ngIf="currentTheme === 'light'">Light Mode</span>
+        <span *ngIf="currentTheme === 'dark'">Dark Mode</span>
+      </span>
+      <div class="form-check form-switch m-0 p-0">
+        <input class="form-check-input ms-0 mt-0 pe-none" type="checkbox" role="switch" [checked]="currentTheme === 'dark'" style="cursor: pointer;">
+      </div>
+    </a>
+
+    <!-- User Profile block -->
+    <div class="user-info mb-3 d-flex align-items-center gap-3 px-3" routerLink="/profile" style="cursor: pointer;">
+      <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar" class="avatar-img shadow-sm object-fit-cover">
+      <div *ngIf="!avatarUrl" class="avatar"></div>
+      <div>
+        <div class="fw-bold profile-link-text" style="font-size: 0.9rem;">My Profile</div>
+        <div class="role-badge" [ngClass]="role.toLowerCase()">
+          {{ role }}
+        </div>
+      </div>
+    </div>
     <a routerLink="/login" class="nav-item logout">
       <i class="icon-logout"></i> Logout
     </a>

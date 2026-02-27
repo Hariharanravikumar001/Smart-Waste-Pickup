@@ -3,78 +3,96 @@
   <p>Here's an overview of your activity.</p>
 </div>
 
-<div class="stats-grid">
+<div class="row g-4 mb-5">
   <!-- USER STATS -->
   <ng-container *ngIf="role === 'User'">
-    <div class="stat-card">
-      <div class="stat-icon bg-blue"><i class="icon-trash"></i></div>
-      <div>
-        <div class="stat-title">Total Pickups</div>
-        <div class="stat-value">12</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-blue text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-trash"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Total Pickups</div>
+          <div class="stat-value mt-1">{{ userStats.totalPickups }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-orange"><i class="icon-clock"></i></div>
-      <div>
-        <div class="stat-title">Pending Requests</div>
-        <div class="stat-value text-warning">2</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-orange text-warning rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-clock"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Pending Requests</div>
+          <div class="stat-value text-warning mt-1">{{ userStats.pendingRequests }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-green"><i class="icon-leaf"></i></div>
-      <div>
-        <div class="stat-title">Waste Recycled</div>
-        <div class="stat-value text-success">45 kg</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-green text-success rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-leaf"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Waste Recycled</div>
+          <div class="stat-value text-success mt-1">{{ userStats.wasteRecycled }}</div>
+        </div>
       </div>
     </div>
   </ng-container>
 
   <!-- VOLUNTEER STATS -->
   <ng-container *ngIf="role === 'Volunteer'">
-    <div class="stat-card">
-      <div class="stat-icon bg-green"><i class="icon-check"></i></div>
-      <div>
-        <div class="stat-title">Pickups Completed</div>
-        <div class="stat-value text-success">28</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-green text-success rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-check"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Pickups Completed</div>
+          <div class="stat-value text-success mt-1">{{ volunteerStats.pickupsCompleted }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-blue"><i class="icon-truck"></i></div>
-      <div>
-        <div class="stat-title">Active Tasks</div>
-        <div class="stat-value text-primary">3</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-blue text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-truck"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Active Tasks</div>
+          <div class="stat-value text-primary mt-1">{{ volunteerStats.activeTasks }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-purple"><i class="icon-map"></i></div>
-      <div>
-        <div class="stat-title">Total Distance</div>
-        <div class="stat-value">120 km</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-purple rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; color: #9333ea;"><i class="icon-leaf"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Weight Collected</div>
+          <div class="stat-value mt-1">{{ volunteerStats.weightCollected }}</div>
+        </div>
       </div>
     </div>
   </ng-container>
 
   <!-- ADMIN STATS -->
   <ng-container *ngIf="role === 'Admin'">
-    <div class="stat-card">
-      <div class="stat-icon bg-blue"><i class="icon-users"></i></div>
-      <div>
-        <div class="stat-title">Total Users</div>
-        <div class="stat-value">1,245</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-blue text-primary rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-users"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Total Users</div>
+          <div class="stat-value mt-1">{{ adminStats.totalUsers }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-green"><i class="icon-shield"></i></div>
-      <div>
-        <div class="stat-title">Active Volunteers</div>
-        <div class="stat-value text-success">84</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-green text-success rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;"><i class="icon-shield"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Active Volunteers</div>
+          <div class="stat-value text-success mt-1">{{ adminStats.activeVolunteers }}</div>
+        </div>
       </div>
     </div>
-    <div class="stat-card">
-      <div class="stat-icon bg-pink"><i class="icon-globe"></i></div>
-      <div>
-        <div class="stat-title">Total Recycled</div>
-        <div class="stat-value text-primary">12.5 T</div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="stat-card h-100 p-4 rounded-4 shadow-sm border border-light d-flex align-items-center gap-3">
+        <div class="stat-icon bg-pink rounded-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px; color: #db2777;"><i class="icon-globe"></i></div>
+        <div>
+          <div class="text-uppercase text-muted fw-semibold" style="font-size: 0.85rem; letter-spacing: 0.5px;">Total Recycled</div>
+          <div class="stat-value text-primary mt-1">{{ adminStats.totalRecycled }}</div>
+        </div>
       </div>
     </div>
   </ng-container>
